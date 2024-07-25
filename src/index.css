@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Meow+Script&family=Shadows+Into+Light+Two&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    @font-face {
+        font-family: 'Brittany';
+        src: url("./assets/Fonts/BrittanySignature.ttf") format("truetype") ;
+        font-weight: normal;
+        font-style: normal; 
+    }
+    @font-face {
+        font-family: 'Neoneon';
+        src: url("./assets/Fonts/Neoneon.otf") format("opentype") ;
+        font-weight: normal;
+        font-style: normal; 
+    }
+    @font-face {
+        font-family: 'Moon Time';
+        src: url("./assets/Fonts/MoonTime.otf") format("opentype") ;
+        font-weight: normal;
+        font-style: normal; 
+    }
+    @font-face {
+        font-family: 'Twister';
+        src: url("./assets/Fonts/Twister.ttf") format("truetype") ;
+        font-weight: normal;
+        font-style: normal; 
+    }
+}
+
+
+
+
+

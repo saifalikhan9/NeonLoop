@@ -1,0 +1,29 @@
+import HeroLogo from "../assets/Images/HeroLogo.jpg";
+
+const Hero = () => {
+  return (
+    <div className="relative w-full  bg-black">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between lg:space-x-10">
+          <div className="lg:w-1/2 flex flex-col justify-center">
+            <h1 className="font-Vibes   mt-8 text-center lg:text-left text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-yellow-400">
+              <span className="font-meow text-shadow-neon text-black" >Neon</span> Lights Brand
+            </h1>
+            <p className="mt-8 text-center lg:text-left text-base md:text-lg lg:text-xl  text-gray-300">
+              Experience world-class craftsmanship with LED neon signs that brighten up your space and match your aesthetic.
+            </p>
+          </div>
+          <div className="lg:w-1/2 mt-8 rounded-lg overflow-hidden box-shadow-neon-blue">
+            <img
+              className="aspect-[3/2] w-full bg-gray-50 object-cover lg:h-[500px] lg:object-center min-w-2.5 "
+              src={HeroLogo}
+              alt="Neon Lights Brand"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
