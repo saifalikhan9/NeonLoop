@@ -10,7 +10,7 @@ export default {
       },
       textShadow: {
         neon: "0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
-        whiteGlow : '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #bcbcbc, 0 0 40px #bcbcbc, 0 0 50px #bcbcbc, 0 0 60px #bcbcbc',
+        'glow': '0 0 10px rgba(255, 255, 255, 0.5)',
       },
       boxShadow: {
         neon: "0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
@@ -18,12 +18,12 @@ export default {
       "neon-blue": "0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #00f", // Blue neon effect
       fontFamily:{
         'brittany': ['Brittany', 'sans-serif'],
-        'shadows': ['Shadows', 'sans-serif'],
         'neoneon': ['Neoneon', 'sans-serif'],
         'moontime': ['Moon Time', 'sans-serif'],
         'twister': ['Twister', 'sans-serif'],
         'meow': ['Meow Script', 'sans-serif'],
-        'Vibes' : "Great Vibes"
+        'Vibes' : "Great Vibes",
+        'ShadowIL': "ShadowIL",
       }
     },
   },
@@ -35,8 +35,8 @@ export default {
             "0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
             
         },
-        ".text-glow": {  
-          textShadow : '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #bcbcbc, 0 0 40px #bcbcbc, 0 0 50px #bcbcbc, 0 0 60px #bcbcbc',
+        '.text-glow': {
+          textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
         },
         ".box-shadow-neon": {
           boxShadow:

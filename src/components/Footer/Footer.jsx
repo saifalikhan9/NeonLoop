@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo2 from '../assets/SVGs/NeonLoop.png';
+import Logo2 from '../../assets/SVGs/NeonLoop.png';
 
 const Footer = () => {
   return (

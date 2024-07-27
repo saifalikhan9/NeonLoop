@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, X, UserRound } from "lucide-react";
-import logo2 from "../assets/SVGs/NeonLoop.png";
+import logo2 from "../../assets/SVGs/NeonLoop.png";
 import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
