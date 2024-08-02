@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
+    
     './src/**/*.{js,jsx}',
   ],
   prefix: "",
@@ -16,6 +14,15 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily:{
+        'brittany': ['Brittany', 'sans-serif'],
+        'neoneon': ['Neoneon', 'sans-serif'],
+        'moontime': ['Moon Time', 'sans-serif'],
+        'twister': ['Twister', 'sans-serif'],
+        'meow': ['Meow Script', 'sans-serif'],
+        'Vibes' : "Great Vibes",
+        'ShadowIL': "ShadowIL",
+      },
       colors: {
         neon: "#17dd7e",
         textShadow: {
@@ -26,15 +33,6 @@ module.exports = {
           neon: "0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
         },
         "neon-blue": "0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #00f", // Blue neon effect
-        fontFamily:{
-          'brittany': ['Brittany', 'sans-serif'],
-          'neoneon': ['Neoneon', 'sans-serif'],
-          'moontime': ['Moon Time', 'sans-serif'],
-          'twister': ['Twister', 'sans-serif'],
-          meow: ['Meow Script', 'sans-serif'],
-          Vibes : "Great Vibes",
-          'ShadowIL': "ShadowIL",
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

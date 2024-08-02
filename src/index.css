@@ -1,8 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Meow+Script&family=Shadows+Into+Light&display=swap');    
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  @font-face {
+    font-family: "Brittany";
+    src: local("BrittanySignature"), local("Brittany-Signature"),
+      url("./assets/Fonts/BrittanySignature.ttf");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Moon Time";
+    src: local("Moon Time"), local("Moon-Time"),
+      url("./assets/Fonts/MoonTime.otf");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Neoneon";
+    src: local("Moon Time"), local("Neoneon"),
+      url("./assets/Fonts/Neoneon.otf");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Twister";
+    src: local("Moon Time"), local("Twister"),
+      url("./assets/Fonts/Twister.ttf");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "ShadowIL";
+    src: local("ShadowsIntoLight"), local("Shadows-Into-Light"),
+      url("./assets//Fonts/ShadowsIntoLight-Regular.ttf");
+    font-weight: normal;
+  }
+}
 
 @layer base {
   :root {
@@ -72,39 +110,3 @@
 }
 
 
-@layer base {
-  @font-face {
-    font-family: "Brittany";
-    src: local("BrittanySignature"), local("Brittany-Signature"),
-      url("./assets/Fonts/BrittanySignature.ttf");
-    font-weight: normal;
-  }
-
-  @font-face {
-    font-family: "Moon Time";
-    src: local("Moon Time"), local("Moon-Time"),
-      url("./assets/Fonts/MoonTime.otf");
-    font-weight: normal;
-  }
-
-  @font-face {
-    font-family: "Neoneon";
-    src: local("Moon Time"), local("Neoneon"),
-      url("./assets/Fonts/Neoneon.otf");
-    font-weight: normal;
-  }
-
-  @font-face {
-    font-family: "Twister";
-    src: local("Moon Time"), local("Twister"),
-      url("./assets/Fonts/Twister.ttf");
-    font-weight: normal;
-  }
-
-  @font-face {
-    font-family: "ShadowIL";
-    src: local("ShadowsIntoLight"), local("Shadows-Into-Light"),
-      url("./assets//Fonts/ShadowsIntoLight-Regular.ttf");
-    font-weight: normal;
-  }
-}

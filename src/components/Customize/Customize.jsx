@@ -14,7 +14,7 @@ const fonts = [
   { name: "ShadowIL", displayName: "Shadow Into Light" },
   { name: "Neoneon", displayName: "Neoneon" },
   { name: "Moon Time", displayName: "Moon Time" },
-  { name: "Twister", displayName: "Twister" },
+  { name: "twister", displayName: "Twister" },
   { name: "Meow Script", displayName: "Meow Script" },
 ];
 
@@ -134,7 +134,7 @@ const Customize = () => {
               </div>
               <input
                 type="text"
-                value={text}
+                placeholder={text}
                 onChange={(e) => setText(e.target.value)}
                 className="mt-4 p-2 border rounded min-w-full"
               />
