@@ -162,9 +162,9 @@ const Customize = () => {
         </div>
         {/* Second div */}
         <div className="flex items-start justify-center w-full min-h-svh">
-          <div className="w-full px-4">
-            <div className="my-5 mx-8 p-5">
-              <div className="w-full m-auto text-white text-glow">
+          <div className="w-full lg:px-4">
+            <div className="lg:my-5 lg:mx-8 p-5">
+              <div className="w-full lg:m-auto text-white text-glow">
                 <h1 className="font-bold  lg:text-4xl text-2xl ">Customize your Neon</h1>
                 <p className="my-3 fonboldt- lg:text-xl text-lg ">Pricing: {price} ₹</p>
               </div>
@@ -187,7 +187,7 @@ const Customize = () => {
                   </button>
                 ))}
               </div>
-              <div className="flex-row mt-20">
+              <div className="flex-row mt-10">
                 <p className="py-5 font-bold text-xl text-glow text-white">
                   SELECT YOUR COLOR
                 </p>
