@@ -16,6 +16,8 @@ import Customize from "./components/Customize/Customize.jsx";
 // import Customize from './components/Customize/Customize.jsx'
 import SignIn from "./components/SignIn/SignIn.jsx";
 import SignUp from "./components/SignUp/SignUp.jsx";
+import CardCustom from "./components/ui/CardCustom.jsx"
+
 
 
 const router = createBrowserRouter(
@@ -31,6 +33,8 @@ const router = createBrowserRouter(
       <Route path="customize" element={<Customize />} />
       <Route path="signIn" element={<SignIn />} />
       <Route path="signUp" element={<SignUp />} />
+      <Route path="cart" element={<CardCustom />} />
+
 
     </Route>
   )

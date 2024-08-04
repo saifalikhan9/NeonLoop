@@ -4,13 +4,13 @@ import { useContext, useState } from "react";
 import { Button } from "@mui/material";
 
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import { Link, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X,ShoppingCart } from "lucide-react";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(UserContext);
-
+    
   const logoutHandle = async (e) => {
     e.preventDefault();
     await logout();
@@ -109,20 +109,28 @@ function Header() {
                         </li>
                       </ul>
                     </nav>
+                    {user? (<Button onClick={logoutHandle} variant="contained">
+                    Log Out
+                  </Button>): ""  }
+                    
                   </div>
                 </div>
               </div>
             </div>
           )}
           <div className="inline-flex space-x-3">
+        
             {user ? (
               <div className="inline-flex items-center space-x-5">
-                <p>{user.fullName}</p>
-                <div>
+                 <Link 
+                 to={"/cart"} >
+                 <ShoppingCart /> 
+                 </Link> 
+                {/* <div>
                   <Button onClick={logoutHandle} variant="contained">
                     Log Out
                   </Button>
-                </div>
+                </div> */}
               </div>
             ) : (
               <div className="inline-flex space-x-5 lg:block">
