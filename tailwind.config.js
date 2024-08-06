@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-    
-    './src/**/*.{js,jsx}',
-  ],
+  content: ["./src/**/*.{js,jsx}"],
   prefix: "",
   theme: {
     container: {
@@ -14,25 +11,27 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily:{
-        'brittany': ['Brittany', 'sans-serif'],
-        'neoneon': ['Neoneon', 'sans-serif'],
-        'moontime': ['Moon Time', 'sans-serif'],
-        'twister': ['Twister', 'sans-serif'],
-        'meow': ['Meow Script', 'sans-serif'],
-        'Vibes' : "Great Vibes",
-        'ShadowIL': "ShadowIL",
+      fontFamily: {
+        Brittany: ["Brittany", "sans-serif"],
+        Neoneon: ["Neoneon", "sans-serif"],
+        MoonTime: ["Moon Time", "sans-serif"],
+        Twister: ["Twister", "sans-serif"],
+        MeowScript: ["Meow Script", "sans-serif"],
+        GreatVibes: "Great Vibes",
+        ShadowIL: "ShadowIL",
       },
       colors: {
+        
         neon: "#17dd7e",
         textShadow: {
           neon: "0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
-          'glow': '0 0 10px rgba(255, 255, 255, 0.5)',
+          glow: "0 0 10px rgba(255, 255, 255, 0.5)",
         },
         boxShadow: {
           neon: "0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
         },
-        "neon-blue": "0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #00f", // Blue neon effect
+        "neon-blue":
+          "0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #00f", // Blue neon effect
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -88,17 +87,17 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),
+  plugins: [
+    require("tailwindcss-animate"),
 
     function ({ addUtilities }) {
       addUtilities({
         ".text-shadow-neon": {
           textShadow:
             "0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
-            
         },
-        '.text-glow': {
-          textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+        ".text-glow": {
+          textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
         },
         ".box-shadow-neon": {
           boxShadow:
@@ -110,6 +109,5 @@ module.exports = {
         },
       });
     },
-
   ],
-}
+};

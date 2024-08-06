@@ -5,19 +5,18 @@ import { Button } from "@mui/material";
 
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Link } from "react-router-dom";
-import { Menu, X,ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(UserContext);
-    
+
   const logoutHandle = async (e) => {
     e.preventDefault();
     await logout();
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    console.log("clicked", isMenuOpen);
   };
 
   return (
@@ -59,7 +58,10 @@ function Header() {
           </div>
 
           <div className=" pt-1 absolute right-11 lg:hidden">
-            <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer  " />
+            <Menu
+              onClick={toggleMenu}
+              className=" absolute  h-6 w-6 cursor-pointer  "
+            />
           </div>
           {isMenuOpen && (
             <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
@@ -67,7 +69,7 @@ function Header() {
                 <div className="px-5 pb-6 pt-5">
                   <div className="flex items-center justify-between">
                     <div className="inline-flex items-center space-x-2">
-                      <span className="font-bold">Neon Loop</span>
+                      <span className="font-bold font-Neoneon text-glow text-green-300 text-3xl">Neon Loop</span>
                     </div>
                     <div className="-mr-2">
                       <button
@@ -76,7 +78,7 @@ function Header() {
                         className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                       >
                         <span className="sr-only">Close menu</span>
-                        <X className="h-6 w-6" aria-hidden="true" />
+                        <X className=" h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
                   </div>
@@ -109,28 +111,29 @@ function Header() {
                         </li>
                       </ul>
                     </nav>
-                    {user? (<Button onClick={logoutHandle} variant="contained">
+                    <div className=" mt-5">
+                  <Button onClick={logoutHandle} variant="contained">
                     Log Out
-                  </Button>): ""  }
-                    
+                  </Button>
+                </div>
                   </div>
                 </div>
               </div>
             </div>
           )}
-          <div className="inline-flex space-x-3">
-        
+          <div className="mt-9 mr-5  lg:m-0 lg:p-0">
             {user ? (
-              <div className="inline-flex items-center space-x-5">
-                 <Link 
-                 to={"/cart"} >
-                 <ShoppingCart /> 
-                 </Link> 
-                {/* <div>
+              <div className="inline-flex   ">
+                <div className=" pb-1 mr-5 lg:m-0 lg:p-0 " >
+                  <Link to={"/cart"}>
+                    <ShoppingCart />
+                  </Link>
+                </div>
+                <div className=" lg:block hidden mx-4">
                   <Button onClick={logoutHandle} variant="contained">
                     Log Out
                   </Button>
-                </div> */}
+                </div>
               </div>
             ) : (
               <div className="inline-flex space-x-5 lg:block">

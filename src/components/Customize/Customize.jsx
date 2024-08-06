@@ -1,11 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect, useContext,useState } from "react";
 import html2canvas from "html2canvas";
-import CardCustom from '../ui/CardCustom'
+
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import UserContext from "@/Contexts/UserContext";
 
 const bgImage =
   "https://cdn.pixabay.com/photo/2024/01/27/08/22/ai-generated-8535497_1280.png";
@@ -13,9 +15,9 @@ const bgImage =
 
 
   const sizes = [
-    { fontSize: '30px', price: "2499", actualSize: 'Small' },
-    { fontSize: '48px', price: "3699",  actualSize: 'Medium' },
-    { fontSize: '60px', price: "4799", actualSize: 'Large' }
+    { fontSize: '30px', price: "2499", actualSize: 'Small' , mobileSize: "20px" },
+    { fontSize: '48px', price: "3699",  actualSize: 'Medium', mobileSize: "24px"  },
+    { fontSize: '60px', price: "4799", actualSize: 'Large', mobileSize: "32px"  }
   ];
 const fonts = [
   { name: "brittany", displayName: "Brittany Signature" },
@@ -33,45 +35,38 @@ const colors = [
   { name: "Blue", color: "#0000fe" },
   { name: "Purple", color: "#834e98" },
   { name: "Orange", color: "#ee7b1b" },
-  { name: "Ice-Blue", color: "#62bed3" },
-  { name: "Warm-White", color: "#eedfc9" },
+  { name: "Iceblue", color: "#62bed3" },
+  { name: "Warmwhite", color: "#eedfc9" },
   { name: "Red", color: "#e31e25" },
   { name: "Yellow", color: "#feec00" },
 ];
 
 const Customize = () => {
-  const [text, setText] = useState("Type your text here!");
-  const [font, setFont] = useState("brittany");
-  const [color, setColor] = useState();
-  const [textSize, setTextSize] = useState("text-3xl");
-  const [price, setPrice] = useState("00");
-  const [order, setOrder] = useState(null);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [capturedImage, setCapturedImage] = useState(null);
+  // const [text, setText] = useState("")
+  const {  user, orderDetails, setOrderDetails, fetchOrders } = useContext(UserContext);
+  const { text, font, color, textSize, price, capturedImage } = orderDetails;
   const divRef = useRef(null);
 
-  const orderDetails = {
-    text,
-    font,
-    color,
-    textSize,
-    price,
-    capturedImage,
-  };
+  
 
+    
   const handleFontChange = (selectedFont) => {
-    setFont(selectedFont);
+    setOrderDetails((prevDetails) => ({ ...prevDetails, font: selectedFont }));
   };
 
   const handleColorChange = (selectedColor) => {
-    setColor(selectedColor);
+    
+    
+    setOrderDetails((prevDetails) => ({ ...prevDetails, color: selectedColor }));
   };
 
-  const handleTextSizeChange = (size, price) => {
-   
-    setTextSize(size);
-    setPrice(price)
+  const handleTextSizeChange = (size) => {
+    
+    
+    setOrderDetails((prevDetails) => ({ ...prevDetails, textSize: size, price: size.price }));
   };
+
+
 
  
 
@@ -81,14 +76,31 @@ const Customize = () => {
       return;
     }
 
+    // Fetch the user's previous orders
+    // const previousOrders = await fetchOrders();
+
+    // Check if the current order details match any previous order
+    // const isDuplicateOrder = previousOrders.some(order => 
+    //   order.text === text &&
+    //   order.font === font &&
+    //   order.color === color &&
+    //   order.textSize === textSize &&
+    //   order.price === price
+    // );
+
+    // if (isDuplicateOrder) {
+    //   alert("Duplicate order detected. Not adding to the database.");
+    //   return;
+    // }
+
     const blob = await (await fetch(capturedImage)).blob();
     const file = new File([blob], "neon-sign.png", { type: "image/png" });
 
     const formData = new FormData();
     formData.append("text", text);
     formData.append("font", font);
-    formData.append("color", color);
-    formData.append("textSize", textSize);
+    formData.append("color", color.name);
+    formData.append("textSize", textSize.actualSize);
     formData.append("price", price);
     formData.append("imageUrl", file);
 
@@ -106,32 +118,35 @@ const Customize = () => {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      console.log("Order saved:", data);
+      await response.json();
+      alert("Order saved:");
       // Optionally, handle the saved order data (e.g., update state or redirect)
     } catch (error) {
       console.error("Error saving order:", error);
     }
-
   };
-
   useEffect(() => {
     if (divRef.current) {
       html2canvas(divRef.current, {
         useCORS: true,
         logging: true,
-        width: 700,
-        height: 300,
+        
       }).then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
-        setCapturedImage(imgData);
+        setOrderDetails((prevDetails) => ({ ...prevDetails, capturedImage: imgData }));
       });
     }
-  }, [text, font, textSize, color]);
+  }, [text, font, textSize, color, setOrderDetails]);
 
 
   
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <div className="w-full  ">
       <div className=" grid grid-cols-1 md:grid-cols-2  m-10 justify-center">
@@ -149,10 +164,10 @@ const Customize = () => {
                 backgroundPosition: "center",
               }}
             >
-              <div className="absolute inset-0 bg-black bg-opacity-80 flex items-start justify-center py-40">
+              <div className="absolute inset-0 bg-black bg-opacity-80 flex items-start justify-center lg:py-40 pt-24">
                 <p
-                  className={`text-glow font-bold`}
-                  style={{ fontFamily: font, color: color, fontSize: textSize }} // change the size of this element's text
+                  className={`  text-glow font-bold`}
+                  style={{ fontFamily: font, color:color.color ,   fontSize: isMobile ? textSize.mobileSize : textSize.fontSize, }} // change the size of this element's text
                 >
                   {text}
                 </p>
@@ -165,13 +180,13 @@ const Customize = () => {
           <div className="w-full lg:px-4">
             <div className="lg:my-5 lg:mx-8 p-5">
               <div className="w-full lg:m-auto text-white text-glow">
-                <h1 className="font-bold  lg:text-4xl text-2xl ">Customize your Neon</h1>
+                <h1 className="font-bold  lg:text-4xl text-2xl text-IceBlue ">Customize your Neon</h1>
                 <p className="my-3 fonboldt- lg:text-xl text-lg ">Pricing: {price} ₹</p>
               </div>
               <input
                 type="text"
                 placeholder={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => setOrderDetails((prevDetails) => ({ ...prevDetails, text: e.target.value }))} /* as u see here that i am displaying the text using useState*/
                 className="mt-4 p-2 border rounded min-w-full"
               />
               <div className="  grid grid-cols-3 gap-2 mt-4">
@@ -196,9 +211,11 @@ const Customize = () => {
                     key={ColorItem.name}
                     type="button"
                     className="p-2 mx-1 border-2 rounded-full h-8 w-8"
-                    style={{ background: ColorItem.color }}
-                    onClick={() => handleColorChange(ColorItem.color)}
+                    style={{ backgroundColor: ColorItem.color }}
+                    onClick={() => handleColorChange(ColorItem)}
                   ></button>
+                  
+                  
                 ))}
               </div>
               <div className="flex-row my-5 border-gray-400 rounded text-white">
@@ -221,7 +238,7 @@ const Customize = () => {
                     type="button"
                     className="my-2 mr-2 p-2 border rounded"
                     // style={{ fontSize: SizeItem.fontSize }}
-                    onClick={() => handleTextSizeChange(SizeItem.fontSize,SizeItem.price)}
+                    onClick={() => handleTextSizeChange(SizeItem)}
                   >
                     {SizeItem.actualSize}
                   </button>

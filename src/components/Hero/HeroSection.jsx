@@ -14,8 +14,8 @@ const Hero = () => {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-10">
         <div className="flex flex-col lg:flex-row items-center justify-between lg:space-x-10">
           <div className="lg:w-1/2 flex flex-col justify-center">
-            <h1 className=" font-Vibes mt-8 text-center lg:text-left text-8xl font-extrabold tracking-tight text-yellow-400">
-              <span  className=" font-meow mr-5 text-shadow-neon text-black " >Neon</span > Loop
+            <h1 className=" font-GreatVibes mt-8 text-center lg:text-left text-8xl font-extrabold tracking-tight text-yellow-400">
+              <span  className=" font-MeowScript mr-5 text-shadow-neon text-black " >Neon</span > Loop
               
             </h1>
             <h2 className=" w-full font-serif  mt-3 font-extrabold text-center lg:text-left md:text-lg lg:text-3xl  text-pink-500 text-glow " >Creative style</h2>

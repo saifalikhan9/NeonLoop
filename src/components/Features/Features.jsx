@@ -14,8 +14,8 @@ const Features = () => {
     <>
       <div className="mx-auto my-12 max-w-7xl px-4 sm:px-6 md:my-24 lg:my-32 lg:px-8">
         <div className="mx-auto max-w-xl text-center  ">
-          <h2 className="my-6 font-neoneon text-3xl font-bold leading-tight  text-yellow-400  sm:text-4xl lg:text-6xl">
-            <span className="text-purple-600 font-brittany"> Why </span> Neon attack?
+          <h2 className="my-6 font-Neoneon text-3xl font-bold leading-tight  text-yellow-400  sm:text-4xl lg:text-6xl">
+            <span className="text-purple-600 font-Brittany"> Why </span> Neon attack?
           </h2>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-y-8 text-center sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
