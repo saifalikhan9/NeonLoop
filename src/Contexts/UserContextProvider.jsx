@@ -17,7 +17,7 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem("accessToken");
+      const token = localStorage.getItem("accessToken", "refreshToken");
       if (token) {
         try {
           const response = await axios.get(
@@ -40,7 +40,7 @@ export const UserContextProvider = ({ children }) => {
 
   const fetchOrders = async () => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = localStorage.getItem("accessToken", "refreshToken");
       const response = await axios.get(
         "http://localhost:8000/api/v1/getOrders",
         {
@@ -60,7 +60,7 @@ export const UserContextProvider = ({ children }) => {
     if (user) {
       fetchOrders();
     }
-  }, [user]);
+  }, [user ,orders]);
 
   const login = async (email, password) => {
     try {
@@ -116,6 +116,7 @@ export const UserContextProvider = ({ children }) => {
     setOrderDetails,
     fetchOrders,
     orders,
+    setOrders
   };
 
   if (loading) {

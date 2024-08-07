@@ -3,7 +3,7 @@ import Logo2 from "../../assets/SVGs/NeonLoop.png";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full border-t bg-black text-white pt-4">
+    <footer className=" w-full border-t bg-black text-white pt-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
         <div className=" w-20 h-20 items-center mb-4 md:mb-0">
           <img src={Logo2} alt="Company Logo" className="object-contain" />
