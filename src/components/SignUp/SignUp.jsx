@@ -28,6 +28,7 @@ const SignUp = () => {
     const success = await signUpfn(users.mobNum,users.email,users.fullName,users.password);
     if (success) {
       navigate('/');
+      alert("Please Log")
     } else {
       console.error('Failed to log in');
     }
