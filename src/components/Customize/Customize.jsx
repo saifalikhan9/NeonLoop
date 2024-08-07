@@ -106,7 +106,7 @@ const Customize = () => {
 
     try {
       const token = localStorage.getItem("accessToken"); // Assuming the token is stored in localStorage
-      const response = await fetch("http://localhost:8000/api/v1/order", {
+      const response = await fetch("https://neonbackend.onrender.com/api/v1/order", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
