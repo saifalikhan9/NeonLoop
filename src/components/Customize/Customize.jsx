@@ -43,7 +43,7 @@ const colors = [
 
 const Customize = () => {
   // const [text, setText] = useState("")
-  const {  user, orderDetails, setOrderDetails, fetchOrders } = useContext(UserContext);
+  const {  user, orderDetails, setOrderDetails, url } = useContext(UserContext);
   const { text, font, color, textSize, price, capturedImage } = orderDetails;
   const divRef = useRef(null);
 
@@ -106,7 +106,7 @@ const Customize = () => {
 
     try {
       const token = localStorage.getItem("accessToken"); // Assuming the token is stored in localStorage
-      const response = await fetch("/api/v1/order", {
+      const response = await fetch(`${url}/api/v1/order`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

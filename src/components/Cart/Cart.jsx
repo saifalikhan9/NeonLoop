@@ -7,12 +7,12 @@ import axios from "axios";
 
 
 const Cart = () => {
-  const { user, orders , setOrders } = useContext(UserContext)
+  const { user, orders , setOrders,url } = useContext(UserContext)
 
   const deleteOrderFromApi = async (orderId) => {
     try {
       const token = localStorage.getItem("accessToken", "refreshToken");
-      const res = await axios.delete(`/api/v1/delete/${orderId}`, {
+      const res = await axios.delete(`${url}/api/v1/delete/${orderId}`, {
         headers: {
           Authorization: `Bearer ${token}` // Assuming user object has a token property
         },

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import UserContext from "./UserContext";
 
+const url = "https://neonbackend.onrender.com"
+
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ export const UserContextProvider = ({ children }) => {
       if (token) {
         try {
           const response = await axios.get(
-            "/api/v1/users/current-user",
+            `${url}/api/v1/users/current-user`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -42,7 +44,7 @@ export const UserContextProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("accessToken", "refreshToken");
       const response = await axios.get(
-        "/api/v1/getOrders",
+        `${url}/api/v1/getOrders`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,7 +67,7 @@ export const UserContextProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "/api/v1/users/login",
+        `${url}/api/v1/users/login`,
         { email, password }
       );
       const newUser = response.data.data.user;
@@ -85,7 +87,7 @@ export const UserContextProvider = ({ children }) => {
 
   const signUpfn = async (mobNum, email, fullName, password) => {
     try {
-      await axios.post("/api/v1/users/register", {
+      await axios.post( `${url}/api/v1/users/register` , {
         mobNum,
         email,
         fullName,
@@ -116,7 +118,7 @@ export const UserContextProvider = ({ children }) => {
     setOrderDetails,
     fetchOrders,
     orders,
-    setOrders
+    setOrders,url
   };
 
   if (loading) {
