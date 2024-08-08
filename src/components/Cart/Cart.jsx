@@ -12,7 +12,7 @@ const Cart = () => {
   const deleteOrderFromApi = async (orderId) => {
     try {
       const token = localStorage.getItem("accessToken", "refreshToken");
-      const res = await axios.delete(`https://neonbackend.onrender.com/api/v1/delete/${orderId}`, {
+      const res = await axios.delete(`https://neonbackend.netlify.app/api/v1/delete/${orderId}`, {
         headers: {
           Authorization: `Bearer ${token}` // Assuming user object has a token property
         },
