@@ -21,7 +21,7 @@ export const UserContextProvider = ({ children }) => {
       if (token) {
         try {
           const response = await axios.get(
-            "http://localhost:8000/api/v1/users/current-user",
+            "/api/v1/users/current-user",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ export const UserContextProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("accessToken", "refreshToken");
       const response = await axios.get(
-        "http://localhost:8000/api/v1/getOrders",
+        "/api/v1/getOrders",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export const UserContextProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
+        "/api/v1/users/login",
         { email, password }
       );
       const newUser = response.data.data.user;
@@ -85,7 +85,7 @@ export const UserContextProvider = ({ children }) => {
 
   const signUpfn = async (mobNum, email, fullName, password) => {
     try {
-      await axios.post("http://localhost:8000/api/v1/users/register", {
+      await axios.post("/api/v1/users/register", {
         mobNum,
         email,
         fullName,
