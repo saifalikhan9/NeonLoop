@@ -12,7 +12,7 @@ const Cart = () => {
   const deleteOrderFromApi = async (orderId) => {
     try {
       const token = localStorage.getItem("accessToken", "refreshToken");
-      const res = await axios.delete(`http://localhost:8000/api/v1/delete/${orderId}`, {
+      const res = await axios.delete(`/api/v1/delete/${orderId}`, {
         headers: {
           Authorization: `Bearer ${token}` // Assuming user object has a token property
         },
