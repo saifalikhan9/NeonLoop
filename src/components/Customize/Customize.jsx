@@ -43,27 +43,27 @@ const colors = [
 
 const Customize = () => {
   // const [text, setText] = useState("")
-  const {  user, orderDetails, setOrderDetails, url } = useContext(UserContext);
-  const { text, font, color, textSize, price, capturedImage } = orderDetails;
+  const {  user, cartDetails, setCartDetails, url } = useContext(UserContext);
+  const { text, font, color, textSize, price, capturedImage ,totalAmount } = cartDetails;
   const divRef = useRef(null);
 
   
 
     
   const handleFontChange = (selectedFont) => {
-    setOrderDetails((prevDetails) => ({ ...prevDetails, font: selectedFont }));
+    setCartDetails((prevDetails) => ({ ...prevDetails, font: selectedFont }));
   };
 
   const handleColorChange = (selectedColor) => {
     
     
-    setOrderDetails((prevDetails) => ({ ...prevDetails, color: selectedColor }));
+    setCartDetails((prevDetails) => ({ ...prevDetails, color: selectedColor }));
   };
 
   const handleTextSizeChange = (size) => {
     
     
-    setOrderDetails((prevDetails) => ({ ...prevDetails, textSize: size, price: size.price }));
+    setCartDetails((prevDetails) => ({ ...prevDetails, textSize: size, price: size.price }));
   };
 
 
@@ -100,13 +100,14 @@ const Customize = () => {
     formData.append("text", text);
     formData.append("font", font);
     formData.append("color", color.name);
-    formData.append("textSize", textSize.actualSize);
+    formData.append("size", textSize.actualSize);
     formData.append("price", price);
     formData.append("imageUrl", file);
+    formData.append("totalAmount", totalAmount);
 
     try {
       const token = localStorage.getItem("accessToken"); // Assuming the token is stored in localStorage
-      const response = await fetch(`${url}/api/v1/order`, {
+      const response = await fetch(`${url}/api/v1/cart/addToCart`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -133,10 +134,10 @@ const Customize = () => {
         
       }).then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
-        setOrderDetails((prevDetails) => ({ ...prevDetails, capturedImage: imgData }));
+        setCartDetails((prevDetails) => ({ ...prevDetails, capturedImage: imgData }));
       });
     }
-  }, [text, font, textSize, color, setOrderDetails]);
+  }, [text, font, textSize, color, setCartDetails]);
 
 
   
@@ -186,7 +187,7 @@ const Customize = () => {
               <input
                 type="text"
                 placeholder={text}
-                onChange={(e) => setOrderDetails((prevDetails) => ({ ...prevDetails, text: e.target.value }))} /* as u see here that i am displaying the text using useState*/
+                onChange={(e) => setCartDetails((prevDetails) => ({ ...prevDetails, text: e.target.value }))} /* as u see here that i am displaying the text using useState*/
                 className="mt-4 p-2 border rounded min-w-full"
               />
               <div className="  grid grid-cols-3 gap-2 mt-4">

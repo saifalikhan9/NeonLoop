@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
   
   const [users, setUser] = useState({
-    mobNum: "",
+    phone: "",
     email: "",
     fullName: "",
     password: "",
@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await signUpfn(users.mobNum,users.email,users.fullName,users.password);
+    const success = await signUpfn(users.phone,users.email,users.fullName,users.password);
     if (success) {
       navigate('/');
       alert("Please Log")
@@ -79,9 +79,9 @@ const SignUp = () => {
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="number"
                     placeholder="Mobile Number"
-                    id="mobNum"
-                    name="mobNum"
-                    value={users.mobNum}
+                    id="phone"
+                    name="phone"
+                    value={users.phone}
                     onChange={handleInput}
                   />
                 </div>
