@@ -12,6 +12,9 @@ const SignUp = () => {
     fullName: "",
     password: "",
   });
+
+  console.log(users);
+  
   const { signUpfn } = useContext(UserContext);
   const navigate = useNavigate();
 

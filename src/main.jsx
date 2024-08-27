@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -20,6 +21,8 @@ import Address from "./components/Cart/AddressPage.jsx";
 import Order from "./components/Order/Order.jsx";
 import PaymentGateway from "./components/Pay/PaymentGateway.jsx";
 import Checkout from './components/CheckOut/Checkout.jsx'
+import OrderConfirmation from './components/Order/OrderConfirmation.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +37,7 @@ const router = createBrowserRouter(
       <Route path="order" element={<Order />} />
       <Route path="pay" element={<PaymentGateway />} />
       <Route path="checkout" element={<Checkout/>} />
+      <Route path="confirmation" element={<OrderConfirmation/>} />
     </Route>
   )
 );

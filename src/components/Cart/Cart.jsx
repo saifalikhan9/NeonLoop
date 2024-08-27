@@ -5,29 +5,25 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { user, cart, setCart, url } = useContext(UserContext);
+  const { user, cart, setCart, url, token, getAddress ,clearCart } = useContext(UserContext);
   const [totalAmount, setTotalAmount] = useState(0);
 
-  const token = localStorage.getItem("accessToken");
-  
-  
-
   useEffect(() => {
-    
     let price = 0;
     if (cart) {
       for (let i = 0; i < cart?.length; i++) {
-        
         price += cart[i].price;
       }
     }
     setTotalAmount(price);
-    
   }, [cart]);
+
+
+
+  
 
   const deleteOrderFromApi = async (cartId) => {
     try {
-      const token = localStorage.getItem("accessToken");
       const res = await axios.delete(`${url}/api/v1/cart/delete/${cartId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -50,19 +46,15 @@ const Cart = () => {
     }
   };
 
-
-  
-
   return (
     <div className="mx-auto min-h-screen flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2 text-white">
       <h2 className="text-6xl font-bold text-purple-400 text-center">
         Your cart
-      </h2>{" "}
-      {/* Centered text */}
+      </h2>
       <ul className="flex flex-col divide-y divide-gray-200">
         {cart?.map((product) => (
           <li
-            key={product._id} // i want to hold this ids in the constant so i can use it for another time
+            key={product._id} // Holding product IDs in a constant for future use
             className="flex flex-col py-6 sm:flex-row sm:justify-between"
           >
             <div className="flex w-full space-x-2 sm:space-x-4">
@@ -100,7 +92,7 @@ const Cart = () => {
           </li>
         ))}
       </ul>
-      <div className="space-y-1 text-right">
+      <div className="space-y-1 text-xl text-right">
         <p>
           Total amount:
           <span className="font-semibold"> ₹{totalAmount}</span>
@@ -117,13 +109,20 @@ const Cart = () => {
         </Link>
         <Link to={"/checkout"}>
           <button
+          onClick={()=>getAddress()}
             type="button"
-            
-            className="rounded-md border border-purple-400  px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="rounded-md border border-purple-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Checkout
           </button>
         </Link>
+        <button
+          type="button"
+          onClick={clearCart}
+          className="rounded-md border border-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400"
+        >
+          Clear Cart
+        </button>
       </div>
     </div>
   );

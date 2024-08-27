@@ -43,7 +43,7 @@ const colors = [
 
 const Customize = () => {
   // const [text, setText] = useState("")
-  const {  user, cartDetails, setCartDetails, url } = useContext(UserContext);
+  const {  user, cartDetails, setCartDetails, url, cartFn } = useContext(UserContext);
   const { text, font, color, textSize, price, capturedImage ,totalAmount } = cartDetails;
   const divRef = useRef(null);
 
@@ -120,6 +120,7 @@ const Customize = () => {
       }
 
       await response.json();
+      cartFn();
       alert("Order saved:");
       // Optionally, handle the saved order data (e.g., update state or redirect)
     } catch (error) {

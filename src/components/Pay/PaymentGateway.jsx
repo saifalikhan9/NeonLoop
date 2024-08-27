@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import UserContext from "../../Contexts/UserContext";
-
+import { useNavigate } from "react-router-dom";
 const PayButn = ({ amount }) => {
-  const [orders, setOrders] = useState();
   const [apiKey, setApiKey] = useState("");
 
-  const { url, user, token, cart, selectedAddress } = useContext(UserContext);
+  const { url, user, token, cart, selectedAddress,clearCart } = useContext(UserContext);
   const userID = user?._id;
+  const navigate = useNavigate();
 
   // Fetch the orders
   // const fetchOrders = async () => {
@@ -42,16 +42,21 @@ const PayButn = ({ amount }) => {
     fetchApiKey();
   }, []);
 
-  console.log(amount, "amount");
-  console.log(cart, "cart");
-  console.log(selectedAddress, "address");
-  console.log(userID, "userId");
+  // console.log(amount, "amount");
+  // console.log(cart, "cart");
+  // console.log(selectedAddress, "address");
+  // console.log(userID, "userId");
 
   // Assuming you want to use the first order's ID for payment
   const orderID = cart?.length > 0 ? cart?.map((product) => product._id) : null;
   const handlePayment = async () => {
-    if (!orderID) {
-      console.error("No valid order ID found");
+    if (!selectedAddress || Object.keys(selectedAddress).length === 0) {
+      console.error("No valid address selected.");
+      alert("Please select a shipping address before proceeding with payment.");
+      return;
+    }
+    if (!orderID && selectedAddress ) {
+      console.error("No valid order ID found and select the address");
       return;
     }
 
@@ -73,10 +78,42 @@ const PayButn = ({ amount }) => {
         currency: "INR",
         name: "Neon Loop",
         description: `Payment for Order ID: ${orderID}`,
-        order_id: res.data.razorpayOrderId,
+        order_id: res.data.OrderId,
         handler: async (response) => {
           console.log("Payment Success:", response);
-          // Capture payment or update order status in your backend
+          const paymentData = {
+            orderId: response.razorpay_order_id,
+            paymentId: response.razorpay_payment_id,
+            signature: response.razorpay_signature,
+            amount,
+            orderItems: cart,
+            userID: user._id,
+            shippingAddress: selectedAddress
+          };
+
+          console.log(paymentData);
+          
+
+          try {
+            const res = await axios.post(
+              `${url}/api/v1/payment/verify`,
+              paymentData
+            );
+
+            clearCart();
+            navigate("/confirmation");
+  
+            console.log("razorpay res ", res.data);
+          } catch (error) {
+            console.log("error",error);
+            
+            
+          }
+
+          // if (api.data.success) {
+          //   clearCart();
+          //   navigate("/oderconfirmation");
+          // }
         },
         prefill: {
           name: user?.fullName,
