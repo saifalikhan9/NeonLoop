@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import UserContext from "./UserContext";
 
-const url = import.meta.env.VITE_API_URL;
- // process is not defined
+const url = "http://localhost:8000";
 
 export const UserContextProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
