@@ -173,10 +173,6 @@ export const UserContextProvider = ({ children }) => {
     userOrder
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
